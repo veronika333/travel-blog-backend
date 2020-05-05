@@ -10,5 +10,23 @@ router.get('/', (req, res) => {
     res.json(experienceList);
 })
 
+//get one experience
+router.get('/:id', (req, res) => {
+    const id = Number(req.params.id);
+    console.log(`GET one experience with id of ${id}`);
+
+    const foundExperience = experienceList.find(experience => experience.id === id);
+    console.log({ foundExperience })
+
+    if (foundExperience) {
+        res.json(foundExperience);
+    } else {
+        res
+            .status(404)
+            .json({
+                message: "Experience not found"
+            });
+    }
+})
 
 module.exports = router;
