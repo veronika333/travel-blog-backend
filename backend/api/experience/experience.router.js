@@ -3,7 +3,7 @@ const router = express.Router();
 
 const experiences = require('../../data.json');
 
-//dummydata handing
+//dummydata handling
 //will be removed when database added
 const experienceList = [...experiences];
 let index = 11;
@@ -30,7 +30,7 @@ router.get('/:id', (req, res) => {
         res
             .status(404)
             .json({
-                message: "Experience not updated"
+                message: "Experience not found"
             });
     }
 })
@@ -38,7 +38,7 @@ router.get('/:id', (req, res) => {
 //create an experience
 router.post('/', (req, res) => {
     console.log('create an experience');
-   
+
     const userInput = req.body;
 
     const newExperience = {
@@ -70,7 +70,7 @@ router.patch('/:id', (req, res) => {
     const updatedExperience = experienceList.find(experience => experience.id === id);
 
     if (updatedExperience) {
-        Object.assign(updatedExperience, req.body, {id: updatedExperience.id});
+        Object.assign(updatedExperience, req.body, { id: updatedExperience.id });
         console.log('Experience updated', updatedExperience);
         res.json(updatedExperience);
     } else {
