@@ -83,5 +83,22 @@ router.patch('/:id', (req, res) => {
 })
 
 //delete an experience
+router.delete('/:id', (req, res) => {
+    const id = Number(req.params.id);
+    console.log(`Delete experience with the id of ${id}`);
+
+    const deleteIndex = experienceList.indexOf(id);
+    const deletedExperiences = experienceList.splice(deleteIndex, 1);
+    const deletedExperience = deletedExperiences[0];
+
+    if (deletedExperience) {
+        console.log('Delete successful', deletedExperience);
+        res.json(deletedExperience);
+    } else {
+        res
+            .status(204)
+            .json()
+    }
+})
 
 module.exports = router;
