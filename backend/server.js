@@ -4,6 +4,9 @@ var mongoose = require('mongoose');
 
 const app = express();
 
+//parse json bodies
+app.use(express.json());
+//set experience router to use default route
 app.use('/experience', experienceRouter);
 
 app.get('/', (req, res) => {

@@ -1,7 +1,13 @@
 const express = require('express');
 const router = express.Router();
 
-const experienceList = require('../../data.json');
+const experiences = require('../../data.json');
+
+//dummydata handing
+//will be removed when database added
+const experienceList = [...experiences];
+let index = 11;
+const getId = () => index++;
 
 //get all experiences
 router.get('/', (req, res) => {
@@ -28,5 +34,36 @@ router.get('/:id', (req, res) => {
             });
     }
 })
+
+//create an experience
+router.post('/', (req, res) => {
+    console.log('create an experience');
+   
+    const userInput = req.body;
+
+    const newExperience = {
+        ...userInput,
+        id: getId()
+    }
+
+    if (newExperience) {
+        console.log('new experience created:', newExperience);
+        experienceList.push(newExperience);
+        console.log(experienceList);
+        res
+            .status(201)
+            .json(newExperience)
+    } else {
+        res
+            .status(404)
+            .json({
+                message: "Experience not created"
+            })
+    }
+});
+
+//update an experience
+
+//delete an experience
 
 module.exports = router;
