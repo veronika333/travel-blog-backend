@@ -21,16 +21,16 @@ router.get('/:id', (req, res) => {
     const id = Number(req.params.id);
     console.log(`GET one experience with id of ${id}`);
 
-    const foundExperience = experienceList.find(experience => experience.id === id);
-    console.log({ foundExperience })
+    const updatedExperience = experienceList.find(experience => experience.id === id);
+    console.log({ updatedExperience })
 
-    if (foundExperience) {
-        res.json(foundExperience);
+    if (updatedExperience) {
+        res.json(updatedExperience);
     } else {
         res
             .status(404)
             .json({
-                message: "Experience not found"
+                message: "Experience not updated"
             });
     }
 })
@@ -63,6 +63,24 @@ router.post('/', (req, res) => {
 });
 
 //update an experience
+router.patch('/:id', (req, res) => {
+    const id = Number(req.params.id);
+    console.log(`update an experience with id of ${id}`);
+
+    const updatedExperience = experienceList.find(experience => experience.id === id);
+
+    if (updatedExperience) {
+        Object.assign(updatedExperience, req.body, {id: updatedExperience.id});
+        console.log('Experience updated', updatedExperience);
+        res.json(updatedExperience);
+    } else {
+        res
+            .status(404)
+            .json({
+                message: "Experience not updated"
+            })
+    }
+})
 
 //delete an experience
 
