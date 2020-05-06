@@ -21,11 +21,11 @@ router.get('/:id', (req, res) => {
     const id = Number(req.params.id);
     console.log(`GET one experience with id of ${id}`);
 
-    const updatedExperience = experienceList.find(experience => experience.id === id);
-    console.log({ updatedExperience })
+    const foundExperience = experienceList.find(experience => experience.id === id);
+    console.log({ foundExperience })
 
-    if (updatedExperience) {
-        res.json(updatedExperience);
+    if (foundExperience) {
+        res.json(foundExperience);
     } else {
         res
             .status(404)
@@ -49,7 +49,7 @@ router.post('/', (req, res) => {
     if (newExperience) {
         console.log('new experience created:', newExperience);
         experienceList.push(newExperience);
-        console.log(experienceList);
+        
         res
             .status(201)
             .json(newExperience)
