@@ -1,10 +1,18 @@
+//import the package
 const express = require('express');
 const experienceRouter = require('./api/experience/experience.router');
 const mongoose = require('mongoose');
+require('dotenv/config');
 
 const FRONTEND_ORIGIN = "http://localhost:3000";
 
 const app = express();
+
+// connect to DB
+mongoose.connect('mongodb+srv://Veronika3:Veronika3@cluster0-av0yo.mongodb.net/test?retryWrites=true&w=majority', 
+{ useNewUrlParser: true }, () => 
+    console.log('Connected to DB')
+);
 
 //allow chrome to do ajax call
 app.use((req, res, next) => {
@@ -19,10 +27,10 @@ app.use(express.json());
 //set experience router to use default route
 app.use('/experience', experienceRouter);
 
+// routes
 app.get('/', (req, res) => {
-    res.send('Hello World!');
+    res.send('It is a home page');
 });
-
 
 app.listen(8000, function(){
     console.log('listening on port 8000');
