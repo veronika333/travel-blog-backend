@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const ExperienceSchema = mongoose.Schema({
+const PostSchema = mongoose.Schema({
     title: {
         type: String,
         required: true
@@ -26,6 +26,6 @@ const ExperienceSchema = mongoose.Schema({
         default: Date.now
     },
     story: String
-});
+})
 
-module.exports = mongoose.model('Experience', ExperienceSchema);
+module.exports = mongoose.model('Posts', PostSchema);
