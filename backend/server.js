@@ -1,27 +1,12 @@
 //import the package
 const express = require('express');
-//excecute the package
-const app = express();
-//import mongoose
-var mongoose = require('mongoose');
-const bodyParser = require('body-parser');
+const experienceRouter = require('./api/experience/experience.router');
+const mongoose = require('mongoose');
 require('dotenv/config');
 
-//every time when we make request, we want to make sure that it uses body-parser
-app.use(bodyParser.json());
+const FRONTEND_ORIGIN = "http://localhost:3000";
 
-// import routes
-const postsRoute = require('./routes/posts');
-//middleware: every time it goes to posts, please use postsRoute
-app.use('/posts', postsRoute);
-
-// routes
-app.get('/', (req, res) => {
-    res.send('It is a home page');
-});
-// app.get('/posts', (req, res) => {
-//     res.send('Here we get the posts');
-// });
+const app = express();
 
 // connect to DB
 mongoose.connect('mongodb+srv://Veronika3:Veronika3@cluster0-av0yo.mongodb.net/test?retryWrites=true&w=majority', 
@@ -29,7 +14,24 @@ mongoose.connect('mongodb+srv://Veronika3:Veronika3@cluster0-av0yo.mongodb.net/t
     console.log('Connected to DB')
 );
 
-// listening to the server
+//allow chrome to do ajax call
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", FRONTEND_ORIGIN);
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, DELETE");
+    next();
+})
+
+//parse json bodies
+app.use(express.json());
+//set experience router to use default route
+app.use('/experience', experienceRouter);
+
+// routes
+app.get('/', (req, res) => {
+    res.send('It is a home page');
+});
+
 app.listen(8000, function(){
     console.log('listening on port 8000');
 });
