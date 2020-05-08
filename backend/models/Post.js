@@ -28,13 +28,4 @@ const PostSchema = mongoose.Schema({
     story: String
 })
 
-// const PostSchema = mongoose.Schema({
-//     title: String,
-//     imageUrl: String,
-//     author: String,
-//     shortDesc: String,
-//     location: String,
-//     story: String
-// })
-
 module.exports = mongoose.model('Posts', PostSchema);
