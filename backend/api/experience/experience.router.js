@@ -26,8 +26,6 @@ res.json(posts);
     }
 });
 
-
-
 // //get one experience
 // router.get("/:id", (req, res) => {
 //   const id = Number(req.params.id);
@@ -53,7 +51,7 @@ router.get('/:id', async (req, res) => {
      const post = await Post.findById(req.params.id);
     res.json(post);
  } catch(err){
-     res.json({message:err});
+     res.status(404).json({message:err});
  }
  });
 
@@ -95,9 +93,9 @@ router.post('/', async (req, res) => {
     // save the post and catch if there is an error
     try{
     const savedPost = await post.save();
-    res.json(savedPost);
+    res.status(201).json(savedPost);
     } catch(err) {
-    res.json({ message: err });
+    res.status(404).json({ message: err });
     }
     });
 
@@ -151,7 +149,8 @@ router.delete('/:postId', async (req, res) => {
     const removePost = await Post.remove({_id: req.params.postId});
     res.json(removePost);
 } catch(err){
-    res.json({ message: err });
+    //res.json({ message: err });
+    res.status(204).json({ message: err });
 }
 });
 //Update a post 
@@ -168,7 +167,8 @@ router.patch('/:postId', async (req, res) => {
     );
   res.json(updatePost);
 } catch(err) {
-    res.json({ message: err });
+    //res.json({ message: err });
+    res.status(404).json({ message: err });
 }
 })
 
