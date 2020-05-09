@@ -2,6 +2,7 @@
 const express = require('express');
 const experienceRouter = require('./api/experience/experience.router');
 const mongoose = require('mongoose');
+const PORT = process.env.PORT || 8000;
 require('dotenv/config');
 
 const FRONTEND_ORIGIN = "http://localhost:3000";
@@ -32,6 +33,6 @@ app.get('/', (req, res) => {
     res.send('It is a home page');
 });
 
-app.listen(8000, function(){
+app.listen(PORT, function(){
     console.log('listening on port 8000');
 });
