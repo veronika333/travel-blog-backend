@@ -2,7 +2,7 @@
 const express = require('express');
 const experienceRouter = require('./api/experience/experience.router');
 const mongoose = require('mongoose');
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 5000;
 require('dotenv/config');
 
 const FRONTEND_ORIGIN = "http://localhost:3000";
