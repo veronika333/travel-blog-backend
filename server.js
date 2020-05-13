@@ -8,7 +8,6 @@ require('dotenv/config');
 const FRONTEND_ORIGIN = "http://localhost:3000";
 
 const app = express();
-
 // connect to DB
 mongoose.connect('mongodb+srv://Veronika3:Veronika3@cluster0-av0yo.mongodb.net/test?retryWrites=true&w=majority', 
 { useNewUrlParser: true }, () => 
@@ -34,5 +33,9 @@ app.get('/', (req, res) => {
 });
 
 app.listen(PORT, function(){
+<<<<<<< HEAD:server.js
     console.log(`listening on port ${ PORT }`);
+=======
+    console.log(`Listening on port ${PORT}`);
+>>>>>>> master:backend/server.js
 });
