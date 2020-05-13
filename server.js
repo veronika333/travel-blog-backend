@@ -33,9 +33,5 @@ app.get('/', (req, res) => {
 });
 
 app.listen(PORT, function(){
-<<<<<<< HEAD:server.js
-    console.log(`listening on port ${ PORT }`);
-=======
     console.log(`Listening on port ${PORT}`);
->>>>>>> master:backend/server.js
 });
