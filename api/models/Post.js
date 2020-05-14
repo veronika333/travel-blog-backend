@@ -25,7 +25,11 @@ const PostSchema = mongoose.Schema({
         type: Date,
         default: Date.now
     },
-    story: String
+    story: String,
+    comments: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Comment"
+    }
 })
 
 module.exports = mongoose.model('Posts', PostSchema);

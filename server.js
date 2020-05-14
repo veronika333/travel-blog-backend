@@ -2,6 +2,7 @@
 const express = require("express");
 
 const experienceRouter = require('./api/experience/experience.router');
+const commentRouter = require('./api/comment/comment.router');
 const mongoose = require('mongoose');
 const PORT = process.env.PORT || 5000;
 require('dotenv/config');
@@ -27,6 +28,8 @@ app.use((req, res, next) => {
 app.use(express.json());
 //set experience router to use default route
 app.use('/experience', experienceRouter);
+//set comment router to use default route
+app.use('/experience/:id/comment', commentRouter);
 
 // routes
 app.get('/', (req, res) => {

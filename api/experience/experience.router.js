@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const Post = require('../../models/Post');
+const Post = require('../models/Post');
 
 //veronika's code get all experiences
 router.get('/', async (req, res) => {
