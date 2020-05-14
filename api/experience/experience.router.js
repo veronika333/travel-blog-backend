@@ -60,7 +60,7 @@ router.patch('/:postId', async (req, res) => {
   const updatePost = await Post.updateOne({ _id: req.params.postId }, 
     { $set: {title: req.body.title,
     imageUrl: req.body.imageUrl,
-    author: req.body.shortDesc,
+    author: req.body.author,
     location: req.body.location,
     date: req.body.date,
     story: req.body.story
