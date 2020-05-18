@@ -19,7 +19,6 @@ router.get('/', async (req, res) => {
 router.get('/:comment_id', async (req, res) => {
     try {
         const comment = await Comment.findById(req.params.comment_id);
-        // .populate('comments');
         res.json(comment);
         console.log(comment);
     } catch (err) {
@@ -31,17 +30,17 @@ router.get('/:comment_id', async (req, res) => {
 // creates a new comment under an Experience-post.
 router.post('/', async (req, res) => {
     // Finding an Experience based off it's ID.
-    const foundExp = await Post.findById(req.params.id);
-    // Creating a comment inside the specific Experience.
-    const createdComment = new Comment({
-        author: req.body.author,
-        content: req.body.content,
-        imageUrl: req.body.imageUrl,
-    });
-    // save the comment
-    const savedComment = await createdComment.save();
-    console.log(savedComment);
     try {
+        const foundExp = await Post.findById(req.params.id);
+        // Creating a comment inside the specific Experience.
+        const createdComment = new Comment({
+            author: req.body.author,
+            content: req.body.content,
+            imageUrl: req.body.imageUrl,
+        });
+        // save the comment
+        const savedComment = await createdComment.save();
+        console.log(savedComment);
         // Now we want to push the createdComment to our schema
         const savedExperience = foundExp.comments.push({ createdComment });
         // save the Experience with comment and catch if there is an error
