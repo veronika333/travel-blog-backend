@@ -11,7 +11,7 @@ const PostSchema = mongoose.Schema({
     },
     author: {
         type: String,
-        required: true
+        required: true,
     },
     shortDesc: {
         type: String,

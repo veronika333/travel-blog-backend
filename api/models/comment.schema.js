@@ -16,4 +16,5 @@ const CommentSchema = mongoose.Schema({
     imageUrl: String
 })
 
+// how the Schema creates a comment, this contains all the Schema data from above..
 module.exports = mongoose.model('Comment', CommentSchema);

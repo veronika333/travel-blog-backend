@@ -1,15 +1,18 @@
 //import the package
 const express = require("express");
 
+const mongoose = require('mongoose');
+const app = express();
+
+
+
 const experienceRouter = require('./api/experience/experience.router');
 const commentRouter = require('./api/comment/comment.router');
-const mongoose = require('mongoose');
 const PORT = process.env.PORT || 5000;
 require('dotenv/config');
 
 const FRONTEND_ORIGIN = "http://localhost:3000";
 
-const app = express();
 // connect to DB
 mongoose.connect('mongodb+srv://Veronika3:Veronika3@cluster0-av0yo.mongodb.net/test?retryWrites=true&w=majority', 
 { useNewUrlParser: true }, () => 
