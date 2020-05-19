@@ -17,16 +17,28 @@ router.get("/", async (req, res) => {
 //get one experience
 // Experience-posts with comments.
 // Using .populate() to get Experiences with comments.
+// router.get("/:id", async (req, res) => {
+//   try {
+//     const post = await (await Post.findById(req.params.id))
+//       .populate("comments")
+//       .exec((error, comment) => console.log(error));
+//     res.json(post);
+//   } catch (err) {
+//     res.status(404).json({ message: err });
+//   }
+// });
+
 router.get("/:id", async (req, res) => {
-  try {
-    const post = await (await Post.findById(req.params.id))
-      .populated("comments")
-      .exec((error, comment) => console.log(error));
-    res.json(post);
-  } catch (err) {
-    res.status(404).json({ message: err });
-  }
-});
+    try {
+      const post = await Post.findById(req.params.id)
+      .populate('comments');
+        // .populate("comments")
+        // .exec((error, comment) => comment);
+      res.json(post);
+    } catch (err) {
+      res.status(404).json({ message: err });
+    }
+  });
 
 //create a new post with the model Post and submit
 router.post("/", async (req, res) => {
