@@ -1,16 +1,10 @@
 //import the package
-const express = require("express");
-
-const mongoose = require('mongoose');
+const express = require('express')
+const PORT = process.env.PORT || 5000
 const app = express();
-
-
-
+const mongoose = require('mongoose');
 const experienceRouter = require('./api/experience/experience.router');
 const commentRouter = require('./api/comment/comment.router');
-const PORT = process.env.PORT || 5000;
-require('dotenv/config');
-
 const FRONTEND_ORIGIN = "http://localhost:3000";
 
 // connect to DB
@@ -34,10 +28,10 @@ app.use('/experience', experienceRouter);
 //set comment router to use default route
 app.use('/experience/:id/comment', commentRouter);
 
-// routes
-app.get('/', (req, res) => {
-    res.send('It is a home page');
-});
+// // routes
+// app.get('/', (req, res) => {
+//     res.send('It is a home page');
+// });
 
 app.listen(PORT, function(){
     console.log(`Listening on port ${PORT}`);
