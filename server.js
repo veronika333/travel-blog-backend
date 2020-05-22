@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 const experienceRouter = require('./api/experience/experience.router');
 const commentRouter = require('./api/comment/comment.router');
 //const FRONTEND_ORIGIN = "http://localhost:3000";
-const FRONTEND_ORIGIN = "https://travel-exp-app.herokuapp.com/";
+const FRONTEND_ORIGIN = "https://travel-exp-app.herokuapp.com";
 // connect to DB
 mongoose.connect('mongodb+srv://Veronika3:Veronika3@cluster0-av0yo.mongodb.net/test?retryWrites=true&w=majority', 
 { useNewUrlParser: true }, () => 
